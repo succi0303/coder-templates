@@ -9,17 +9,6 @@ terraform {
   }
 }
 
-
-module "jetbrains_gateway" {
-  source         = "registry.coder.com/modules/jetbrains-gateway/coder"
-  version        = "1.0.13"
-  agent_id       = coder_agent.main.id
-  agent_name     = "main"
-  folder         = "/home/coder/data"
-  jetbrains_ides = ["PY"]
-  default        = "PY"
-}
-
 module "filebrowser" {
   source   = "registry.coder.com/modules/filebrowser/coder"
   version  = "1.0.8"
@@ -225,7 +214,7 @@ data "docker_registry_image" "deeplearning" {
 }
 
 resource "docker_image" "deeplearning" {
-  name          = "${local.registry_name}@${data.docker_registry_image.deeplearning.sha256_digest}"
+  name          = "${local.registry_name}@${data.docker_registry_image.deeplearning.name}"
   pull_triggers = [data.docker_registry_image.deeplearning.sha256_digest]
   keep_locally  = true
 }
@@ -253,7 +242,7 @@ resource "docker_volume" "opt_volume" {
 
 resource "docker_container" "workspace" {
   count    = data.coder_workspace.me.start_count
-  image    = docker_image.deeplearning.image_id
+  image    = docker_image.deeplearning.name
   memory   = data.coder_parameter.ram.value * 1024
   gpus     = "all"
   name     = "coder-${data.coder_workspace_owner.me.name}-${lower(data.coder_workspace.me.name)}"
