@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - "deep_learning/main.tf"
-      - ".github/workflows/deep_learning.yaml"
+      - "deep-learning/main.tf"
+      - ".github/workflows/deep-learning.yaml"
     workflow_dispatch:
 
 jobs:
@@ -27,8 +27,8 @@ jobs:
       - name: Update Coder template
         uses: matifali/update-coder-template@v3
         with:
-          id: deep_learning
-          dir: deep_learning
+          id: deep-learning
+          dir: deep-learning
           url: ${{ vars.CODER_URL }}
           name: ${{ steps.commit_sha.outputs.hash }}
           message: ${{ steps.commit_title.outputs.title }}
