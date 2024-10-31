@@ -28,6 +28,12 @@ module "dotfiles"  {
   agent_id = coder_agent.main.id
 }
 
+module "personalize" {
+  source = "registry.coder.com/modules/personalize/coder"
+  version = "1.0.2"
+  agent_id = coder.agent.main.id
+}
+
 data "coder_workspace_owner" "me" {}
 
 resource "coder_agent" "main" {
