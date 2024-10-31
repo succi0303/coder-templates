@@ -123,7 +123,7 @@ data "coder_parameter" "matlab_version" {
 }
 
 resource "docker_image" "matlab" {
-  name         = "matifall/matlab:${data.coder_parameter.matlab_version.value}"
+  name         = "matifali/matlab:${data.coder_parameter.matlab_version.value}"
   keep_locally = true
 }
 
