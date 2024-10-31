@@ -214,7 +214,7 @@ data "docker_registry_image" "deeplearning" {
 }
 
 resource "docker_image" "deeplearning" {
-  name          = "${local.registry_name}@${data.docker_registry_image.deeplearning.name}"
+  name          = "${local.registry_name}@${data.docker_registry_image.deeplearning.sha256_digest}"
   pull_triggers = [data.docker_registry_image.deeplearning.sha256_digest]
   keep_locally  = true
 }
