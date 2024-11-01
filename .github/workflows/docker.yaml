@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "docker/main.tf"
+      - "docker/build/Dockerfile"
       - ".github/workflows/docker.yaml"
     workflow_dispatch:
 

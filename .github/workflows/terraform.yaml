@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "terraform/main.tf"
+      - "terraform/build/Dockerfile"
       - ".github/workflows/terraform.yaml"
     workflow_dispatch:
 
