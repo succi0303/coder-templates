@@ -11,9 +11,9 @@ RUN apt-get update \
 	wget \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN wget https://releases.hashicorp.com/terraform/1.9.8/terraform_1.9.8_linux_amd64.zip \
-    && unzip ./terraform_1.9.8_linux_amd64.zip -d /usr/local/bin/ \
-    && rm ./terraform_1.9.8_linux_amd64.zip
+RUN wget https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip \
+    && unzip ./terraform_${TF_VERSION}_linux_amd64.zip -d /usr/local/bin/ \
+    && rm ./terraform_${TF_VERSION}_linux_amd64.zip
 
 ARG USER=coder
 RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \

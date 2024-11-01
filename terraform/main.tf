@@ -13,6 +13,21 @@ locals {
   username = data.coder_workspace_owner.me.name
 }
 
+data "coder_parameter" "tf_version" {
+  name = "tf_version"
+  display_name = "Terraform version"
+  description = "Choose your Terraform version"
+  type = "string"
+  mutable = false
+  default = "1.9.8"
+  order = 1
+  option {
+    name = "1.9.8"
+    description = "1.9.8"
+    value = "1.9.8"
+  }
+}
+
 data "coder_provisioner" "me" {
 }
 
@@ -183,6 +198,7 @@ resource "docker_image" "main" {
     context = "./build"
     build_args = {
       USER = local.username
+      TF_VERSION = data.coder_parameter.tf_version.value
     }
   }
   triggers = {
