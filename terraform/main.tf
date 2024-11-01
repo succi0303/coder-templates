@@ -14,17 +14,37 @@ locals {
 }
 
 data "coder_parameter" "tf_version" {
-  name = "tf_version"
+  name         = "tf_version"
   display_name = "Terraform version"
-  description = "Choose your Terraform version"
-  type = "string"
-  mutable = false
-  default = "1.9.8"
-  order = 1
+  description  = "Choose your Terraform version"
+  type         = "string"
+  mutable      = false
+  default      = "1.9.8"
+  order        = 1
   option {
-    name = "1.9.8"
+    name        = "1.9.8"
     description = "1.9.8"
-    value = "1.9.8"
+    value       = "1.9.8"
+  }
+  option {
+    name        = "1.8.5"
+    description = "1.8.5"
+    value       = "1.8.5"
+  }
+  option {
+    name        = "1.7.5"
+    description = "1.7.5"
+    value       = "1.7.5"
+  }
+  option {
+    name        = "1.6.6"
+    description = "1.6.6 (BSL 1.1 license from here)"
+    value       = "1.6.6"
+  }
+  option {
+    name        = "1.5.7"
+    description = "1.5.7 (MPL2.0 licence)"
+    value       = "1.5.7"
   }
 }
 
@@ -37,15 +57,15 @@ provider "docker" {
 data "coder_workspace" "me" {
 }
 
-module "dotfiles"  {
-  source = "registry.coder.com/modules/dotfiles/coder"
-  version = "1.0.18"
+module "dotfiles" {
+  source   = "registry.coder.com/modules/dotfiles/coder"
+  version  = "1.0.18"
   agent_id = coder_agent.main.id
 }
 
 module "personalize" {
-  source = "registry.coder.com/modules/personalize/coder"
-  version = "1.0.2"
+  source   = "registry.coder.com/modules/personalize/coder"
+  version  = "1.0.2"
   agent_id = coder_agent.main.id
 }
 
@@ -197,7 +217,7 @@ resource "docker_image" "main" {
   build {
     context = "./build"
     build_args = {
-      USER = local.username
+      USER       = local.username
       TF_VERSION = data.coder_parameter.tf_version.value
     }
   }
