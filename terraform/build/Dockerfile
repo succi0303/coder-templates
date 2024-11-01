@@ -16,6 +16,7 @@ RUN wget https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_V
     && rm ./terraform_${TF_VERSION}_linux_amd64.zip
 
 ARG USER=coder
+ARG TF_VERSION=1.9.8
 RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
 	&& echo "${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/${USER} \
 	&& chmod 0440 /etc/sudoers.d/${USER}
