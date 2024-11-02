@@ -87,6 +87,7 @@ module "code-server" {
   share        = "owner"
   subdomain    = false
   extensions = [
+    "hashicorp.terraform",
     "MS-CEINTL.vscode-language-pack-ja",
     "vscode-icons-team.vscode-icons",
     "shardulm94.trailing-spaces",
