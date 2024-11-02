@@ -27,6 +27,7 @@ module "vscode-web" {
   version        = "1.0.22"
   agent_id       = coder_agent.main.id
   accept_license = true
+  subdomain = false
 }
 
 module "dotfiles" {
