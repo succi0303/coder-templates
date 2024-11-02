@@ -68,6 +68,51 @@ module "vscode-web" {
   }
 }
 
+module "code-server" {
+  source       = "registry.coder.com/modules/code-server/coder"
+  version      = "1.0.18"
+  agent_id     = coder_agent.main.id
+  folder       = "/home/${local.username}"
+  display_name = "code-server"
+  slug         = "code-server"
+  share        = "owner"
+  subdomain    = false
+  extensions = [
+    "MS-CEINTL.vscode-language-pack-ja",
+    "vscode-icons-team.vscode-icons",
+    "shardulm94.trailing-spaces",
+    "mechatroner.rainbow-csv",
+    "IBM.output-colorizer",
+    "keifererikson.nightfox",
+    "oderwat.indent-rainbow",
+    "redhat.vscode-yaml",
+    "dracula-theme.theme-dracula"
+  ]
+  settings = {
+    "editor.autoClosingBrackets"             = "always"
+    "editor.autoIndent"                      = "full"
+    "editor.bracketPairColorization.enabled" = true
+    "editor.cursorBlinking"                  = "smooth"
+    "editor.cursorSmoothCaretAnimation"      = "on",
+    "editor.fontFamily"                      = "Menlo, Monaco, 'Courier New', monospace"
+    "editor.fontSize"                        = 16
+    "editor.formatOnType"                    = false
+    "editor.insertSpaces"                    = true
+    "editor.lineNumbers"                     = "on"
+    "editor.minimap.enabled"                 = false
+    "editor.smoothScrolling"                 = true
+    "editor.renderControlCharacters"         = true
+    "editor.renderLineHighlight"             = "all"
+    "editor.renderWhitespace"                = "all"
+    "editor.wordWrap"                        = "off"
+    "extensions.autoUpdate"                  = true
+    "terminal.integrated.fontFamily"         = "Menlo, Monaco, 'Courier New', monospace"
+    "terminal.integrated.fontSize"           = 16
+    "workbench.colorTheme"                   = "Nightfox"
+    "workbench.iconTheme"                    = "vscode-icons"
+  }
+}
+
 module "dotfiles" {
   source   = "registry.coder.com/modules/dotfiles/coder"
   version  = "1.0.18"
@@ -194,6 +239,7 @@ resource "coder_app" "code-server" {
     interval  = 5
     threshold = 6
   }
+
 }
 
 resource "docker_volume" "home_volume" {
