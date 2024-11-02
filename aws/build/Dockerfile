@@ -1,19 +1,24 @@
-FROM ubuntu
+FROM ubuntu/python
 
 RUN apt-get update \
 	&& apt-get install -y \
 	curl \
 	git \
-	python3.10 \
-	python3-pip \
 	sudo \
 	unzip \
 	vim \
 	wget \
 	&& rm -rf /var/lib/apt/lists/*
 
-# Install AWS and AWS SAM CLI
-RUN python3.10 -m pip install --upgrade pip
+# Install AWS CLI
+RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
+    && unzip awscliv2.zip \
+	&& ./aws/install -i /usr/local/aws-cli -b /usr/bin
+
+# Install AWS SAM CLI
+RUN curl "https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip" -o "aws-sam-cli.zip"
+    && unzip aws-sam-cli.zip -d aws-sam \
+	&& ./aws-sam/install
 
 ARG USER=coder
 RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
