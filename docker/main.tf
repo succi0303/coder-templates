@@ -44,26 +44,26 @@ module "vscode-web" {
     "dracula-theme.theme-dracula"
   ]
   settings = {
-    "editor.autoClosingBrackets"             = "always",
-    "editor.autoIndent"                      = "full",
-    "editor.bracketPairColorization.enabled" = true,
-    "editor.cursorBlinking"                  = "smooth",
+    "editor.autoClosingBrackets"             = "always"
+    "editor.autoIndent"                      = "full"
+    "editor.bracketPairColorization.enabled" = true
+    "editor.cursorBlinking"                  = "smooth"
     "editor.cursorSmoothCaretAnimation"      = "on",
-    "editor.fontFamily"                      = "Menlo, Monaco, 'Courier New', monospace",
-    "editor.fontSize"                        = 16,
-    "editor.formatOnType"                    = false,
-    "editor.insertSpaces"                    = true,
-    "editor.lineNumbers"                     = "on",
-    "editor.minimap.enabled"                 = false,
-    "editor.smoothScrolling"                 = true,
-    "editor.renderControlCharacters"         = true,
-    "editor.renderLineHighlight"             = "all",
-    "editor.renderWhitespace"                = "all",
-    "editor.wordWrap"                        = "off",
-    "extensions.autoUpdate"                  = true,
-    "terminal.integrated.fontFamily"         = "Menlo, Monaco, 'Courier New', monospace",
-    "terminal.integrated.fontSize"           = 16,
-    "workbench.colorTheme"                   = "Nightfox",
+    "editor.fontFamily"                      = "Menlo, Monaco, 'Courier New', monospace"
+    "editor.fontSize"                        = 16
+    "editor.formatOnType"                    = false
+    "editor.insertSpaces"                    = true
+    "editor.lineNumbers"                     = "on"
+    "editor.minimap.enabled"                 = false
+    "editor.smoothScrolling"                 = true
+    "editor.renderControlCharacters"         = true
+    "editor.renderLineHighlight"             = "all"
+    "editor.renderWhitespace"                = "all"
+    "editor.wordWrap"                        = "off"
+    "extensions.autoUpdate"                  = true
+    "terminal.integrated.fontFamily"         = "Menlo, Monaco, 'Courier New', monospace"
+    "terminal.integrated.fontSize"           = 16
+    "workbench.colorTheme"                   = "Nightfox"
     "workbench.iconTheme"                    = "vscode-icons"
   }
 }
