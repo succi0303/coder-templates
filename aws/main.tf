@@ -53,6 +53,7 @@ module "code-server" {
   subdomain    = false
   extensions = [
     "AmazonWebServices.aws-toolkit-vscode",
+    "amazonwebservices.amazon-q-vscode",
     "MS-CEINTL.vscode-language-pack-ja",
     "vscode-icons-team.vscode-icons",
     "shardulm94.trailing-spaces",

@@ -17,6 +17,12 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
     && unzip awscliv2.zip \
 	&& ./aws/install -i /usr/local/aws-cli -b /usr/bin
 
+# Install git-secret
+RUN git clone https://github.com/awslabs/git-secrets \
+    && cd git-secrets && make install \
+	&& git secrets --register-aws --global \
+	&& git config --global init.templateDir ~/.git-templates/git-secrets
+
 # Install AWS SAM CLI
 RUN wget "https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip" \
     && unzip aws-sam-cli-linux-x86_64.zip -d sam-installation \
