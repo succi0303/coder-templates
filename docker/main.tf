@@ -32,6 +32,16 @@ module "vscode-web" {
   slug           = "vscode-web"
   share          = "owner"
   subdomain      = false
+  extensions = [
+    "MS-CEINTL.vscode-language-pack-ja",
+    "vscode-icons-team.vscode-icons",
+    "shardulm94.trailing-spaces",
+    "mechatroner.rainbow-csv",
+    "IBM.output-colorizer",
+    "keifererikson.nightfox",
+    "oderwat.indent-rainbow",
+    "redhat.vscode-yaml"
+  ]
 }
 
 module "dotfiles" {
