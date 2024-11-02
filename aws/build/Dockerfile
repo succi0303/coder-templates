@@ -1,9 +1,11 @@
-FROM ubuntu/python:3.12-24.04_stable
+FROM ubuntu
 
 RUN apt-get update \
 	&& apt-get install -y \
 	curl \
 	git \
+	python3.10 \
+	python3-pip \
 	sudo \
 	unzip \
 	vim \
@@ -11,8 +13,8 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Install AWS and AWS SAM CLI
-RUN pip install -U pip setuptools wheel --no-cache-dir && \
-    pip install pipx --no-cache-dir && \
+RUN pip3 install -U pip setuptools wheel --no-cache-dir && \
+    pip3 install pipx --no-cache-dir && \
 	pipx install awscli==2.* && \
 	pipx install aws-sam-cli==1.*
 
