@@ -73,8 +73,8 @@ module "code-server" {
   version      = "1.0.18"
   agent_id     = coder_agent.main.id
   folder       = "/home/${local.username}"
-  display_name = "code-server"
-  slug         = "code-server"
+  display_name = "code-server-mod"
+  slug         = "code-server-module"
   share        = "owner"
   subdomain    = false
   extensions = [
