@@ -57,6 +57,68 @@ provider "docker" {
 data "coder_workspace" "me" {
 }
 
+module "vscode-web" {
+  source         = "registry.coder.com/modules/vscode-web/coder"
+  version        = "1.0.22"
+  agent_id       = coder_agent.main.id
+  accept_license = true
+  folder         = "/home/${local.username}"
+  display_name   = "VS Code Web"
+  slug           = "vscode-web"
+  share          = "owner"
+  subdomain      = false
+  extensions = [
+    "vscode-icons-team.vscode-icons",
+    "keifererikson.nightfox"
+  ]
+  settings = {
+    "workbench.colorTheme" = "Nightfox"
+    "workbench.iconTheme"  = "vscode-icons"
+  }
+}
+
+module "code-server" {
+  source       = "registry.coder.com/modules/code-server/coder"
+  version      = "1.0.18"
+  agent_id     = coder_agent.main.id
+  folder       = "/home/${local.username}"
+  display_name = "code-server"
+  slug         = "code-server"
+  share        = "owner"
+  subdomain    = false
+  extensions = [
+    "MS-CEINTL.vscode-language-pack-ja",
+    "vscode-icons-team.vscode-icons",
+    "shardulm94.trailing-spaces",
+    "mechatroner.rainbow-csv",
+    "IBM.output-colorizer",
+    "oderwat.indent-rainbow",
+    "redhat.vscode-yaml",
+    "dracula-theme.theme-dracula"
+  ]
+  settings = {
+    "editor.autoClosingBrackets"             = "always"
+    "editor.autoIndent"                      = "full"
+    "editor.bracketPairColorization.enabled" = true
+    "editor.cursorBlinking"                  = "smooth"
+    "editor.cursorSmoothCaretAnimation"      = "on",
+    "editor.fontSize"                        = 16
+    "editor.formatOnType"                    = false
+    "editor.insertSpaces"                    = true
+    "editor.lineNumbers"                     = "on"
+    "editor.minimap.enabled"                 = false
+    "editor.smoothScrolling"                 = true
+    "editor.renderControlCharacters"         = true
+    "editor.renderLineHighlight"             = "all"
+    "editor.renderWhitespace"                = "all"
+    "editor.wordWrap"                        = "on"
+    "extensions.autoUpdate"                  = true
+    "terminal.integrated.fontSize"           = 16
+    "workbench.colorTheme"                   = "Dracula Theme"
+    "workbench.iconTheme"                    = "vscode-icons"
+  }
+}
+
 module "dotfiles" {
   source   = "registry.coder.com/modules/dotfiles/coder"
   version  = "1.0.18"
@@ -82,13 +144,6 @@ resource "coder_agent" "main" {
       cp -rT /etc/skel ~
       touch ~/.init_done
     fi
-
-    # Install the latest code-server.
-    # Append "--version x.x.x" to install a specific version of code-server.
-    curl -fsSL https://code-server.dev/install.sh | sh -s -- --method=standalone --prefix=/tmp/code-server
-
-    # Start code-server in the background.
-    /tmp/code-server/bin/code-server --auth none --port 13337 >/tmp/code-server.log 2>&1 &
   EOT
 
   # These environment variables allow you to make Git commits right away after creating a
@@ -166,22 +221,6 @@ resource "coder_agent" "main" {
     EOT
     interval     = 10
     timeout      = 1
-  }
-}
-
-resource "coder_app" "code-server" {
-  agent_id     = coder_agent.main.id
-  slug         = "code-server"
-  display_name = "code-server"
-  url          = "http://localhost:13337/?folder=/home/${local.username}"
-  icon         = "/icon/code.svg"
-  subdomain    = false
-  share        = "owner"
-
-  healthcheck {
-    url       = "http://localhost:13337/healthz"
-    interval  = 5
-    threshold = 6
   }
 }
 
