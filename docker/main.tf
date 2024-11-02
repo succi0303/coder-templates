@@ -22,15 +22,22 @@ provider "docker" {
 data "coder_workspace" "me" {
 }
 
-module "dotfiles"  {
-  source = "registry.coder.com/modules/dotfiles/coder"
-  version = "1.0.18"
+module "vscode-web" {
+  source         = "registry.coder.com/modules/vscode-web/coder"
+  version        = "1.0.22"
+  agent_id       = coder_agent.main.id
+  accept_license = true
+}
+
+module "dotfiles" {
+  source   = "registry.coder.com/modules/dotfiles/coder"
+  version  = "1.0.18"
   agent_id = coder_agent.main.id
 }
 
 module "personalize" {
-  source = "registry.coder.com/modules/personalize/coder"
-  version = "1.0.2"
+  source   = "registry.coder.com/modules/personalize/coder"
+  version  = "1.0.2"
   agent_id = coder_agent.main.id
 }
 
