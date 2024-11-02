@@ -1,20 +1,20 @@
-FROM ubuntu
+FROM ubuntu/python
 
 RUN apt-get update \
 	&& apt-get install -y \
-	ca-certificates \
 	curl \
 	git \
-	golang \
 	sudo \
 	unzip \
 	vim \
 	wget \
 	&& rm -rf /var/lib/apt/lists/*
 
-RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" \
-    && unzip awscliv2.zip \
-	&& ./aws/install -i /usr/local/aws-cli -b /usr/bin
+# Install AWS and AWS SAM CLI
+RUN pip install -U pip setuptools wheel --no-cache-dir && \
+    pip install pipx --no-cache-dir && \
+	pipx install awscli==2.* && \
+	pipx install aws-sam-cli==1.*
 
 ARG USER=coder
 RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
