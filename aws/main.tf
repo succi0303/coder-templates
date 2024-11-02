@@ -52,6 +52,8 @@ module "code-server" {
   share        = "owner"
   subdomain    = false
   extensions = [
+    "AmazonWebServices.aws-toolkit-vscode",
+    "aws-scripting-guy.cform",
     "MS-CEINTL.vscode-language-pack-ja",
     "vscode-icons-team.vscode-icons",
     "shardulm94.trailing-spaces",
