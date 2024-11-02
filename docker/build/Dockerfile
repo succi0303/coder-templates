@@ -2,6 +2,9 @@ FROM ubuntu
 
 RUN apt-get update \
 	&& apt-get install -y \
+	DEBIAN_FRONTEND=noninteractive TZ=Asia/Tokyo apt-get install -y tzdata && \
+    ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && \
+    dpkg-reconfigure --frontend noninteractive tzdata && \
 	curl \
 	git \
 	golang \
