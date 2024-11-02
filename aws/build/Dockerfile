@@ -16,9 +16,9 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 	&& ./aws/install -i /usr/local/aws-cli -b /usr/bin
 
 # Install AWS SAM CLI
-RUN curl "https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip" -o "aws-sam-cli.zip"
-    && unzip aws-sam-cli.zip -d aws-sam \
-	&& ./aws-sam/install
+RUN wget "https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip" \
+    && unzip aws-sam-cli-linux-x86_64.zip -d sam-installation \
+	&& ./sam-installation/install
 
 ARG USER=coder
 RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
