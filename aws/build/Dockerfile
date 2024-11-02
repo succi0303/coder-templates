@@ -1,4 +1,4 @@
-FROM ubuntu/python
+FROM ubuntu/python:3.12-24.04_stable
 
 RUN apt-get update \
 	&& apt-get install -y \
