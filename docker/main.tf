@@ -33,38 +33,12 @@ module "vscode-web" {
   share          = "owner"
   subdomain      = false
   extensions = [
-    "MS-CEINTL.vscode-language-pack-ja",
     "vscode-icons-team.vscode-icons",
-    "shardulm94.trailing-spaces",
-    "mechatroner.rainbow-csv",
-    "IBM.output-colorizer",
-    "keifererikson.nightfox",
-    "oderwat.indent-rainbow",
-    "redhat.vscode-yaml",
-    "dracula-theme.theme-dracula"
+    "keifererikson.nightfox"
   ]
   settings = {
-    "editor.autoClosingBrackets"             = "always"
-    "editor.autoIndent"                      = "full"
-    "editor.bracketPairColorization.enabled" = true
-    "editor.cursorBlinking"                  = "smooth"
-    "editor.cursorSmoothCaretAnimation"      = "on",
-    "editor.fontFamily"                      = "Menlo, Monaco, 'Courier New', monospace"
-    "editor.fontSize"                        = "16"
-    "editor.formatOnType"                    = false
-    "editor.insertSpaces"                    = true
-    "editor.lineNumbers"                     = "on"
-    "editor.minimap.enabled"                 = false
-    "editor.smoothScrolling"                 = true
-    "editor.renderControlCharacters"         = true
-    "editor.renderLineHighlight"             = "all"
-    "editor.renderWhitespace"                = "all"
-    "editor.wordWrap"                        = "off"
-    "extensions.autoUpdate"                  = true
-    "terminal.integrated.fontFamily"         = "Menlo, Monaco, 'Courier New', monospace"
-    "terminal.integrated.fontSize"           = 16
-    "workbench.colorTheme"                   = "Nightfox"
-    "workbench.iconTheme"                    = "vscode-icons"
+    "workbench.colorTheme" = "Nightfox"
+    "workbench.iconTheme"  = "vscode-icons"
   }
 }
 
