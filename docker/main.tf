@@ -83,7 +83,6 @@ module "code-server" {
     "shardulm94.trailing-spaces",
     "mechatroner.rainbow-csv",
     "IBM.output-colorizer",
-    "keifererikson.nightfox",
     "oderwat.indent-rainbow",
     "redhat.vscode-yaml",
     "dracula-theme.theme-dracula"
@@ -108,7 +107,7 @@ module "code-server" {
     "extensions.autoUpdate"                  = true
     "terminal.integrated.fontFamily"         = "Menlo, Monaco, 'Courier New', monospace"
     "terminal.integrated.fontSize"           = 16
-    "workbench.colorTheme"                   = "Nightfox"
+    "workbench.colorTheme"                   = "Dracula Theme"
     "workbench.iconTheme"                    = "vscode-icons"
   }
 }
