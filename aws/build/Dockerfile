@@ -6,6 +6,7 @@ RUN apt-get update \
 	git \
 	nodejs \
 	npm \
+	tzdata \
 	sudo \
 	unzip \
 	vim \
@@ -31,6 +32,7 @@ RUN wget "https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cl
 # Install AWS CDK
 RUN npm install -g aws-cdk
 
+ENV TZ Asia/Tokyo
 ARG USER=coder
 RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
 	&& echo "${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/${USER} \

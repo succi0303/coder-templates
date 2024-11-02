@@ -6,6 +6,7 @@ RUN apt-get update \
 	git \
 	golang \
 	sudo \
+	tzdata \
 	unzip \
 	vim \
 	wget \
@@ -16,6 +17,7 @@ RUN wget https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_V
     && unzip ./terraform_${TF_VERSION}_linux_amd64.zip -d /usr/local/bin/ \
     && rm ./terraform_${TF_VERSION}_linux_amd64.zip
 
+ENV TZ Asia/Tokyo
 ARG USER=coder
 RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
 	&& echo "${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/${USER} \
