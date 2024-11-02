@@ -13,8 +13,8 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Install AWS and AWS SAM CLI
-RUN pip3 install -U pip setuptools wheel --no-cache-dir && \
-    pip3 install pipx --no-cache-dir && \
+RUN python3.10 -m pip install --upgrade pip \
+    pip install pipx --no-cache-dir && \
 	pipx install awscli==2.* && \
 	pipx install aws-sam-cli==1.*
 
