@@ -15,7 +15,7 @@ RUN apt-get update \
 # Install AWS and AWS SAM CLI
 RUN python3.10 -m pip install --upgrade pip && \
     pip install pipx --no-cache-dir && \
-	pipx install awscli&& \
+	pipx install awscli && \
 	pipx install aws-sam-cli
 
 ARG USER=coder
