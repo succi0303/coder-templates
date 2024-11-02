@@ -93,7 +93,6 @@ module "code-server" {
     "editor.bracketPairColorization.enabled" = true
     "editor.cursorBlinking"                  = "smooth"
     "editor.cursorSmoothCaretAnimation"      = "on",
-    "editor.fontFamily"                      = "Menlo, Monaco, 'Courier New', monospace"
     "editor.fontSize"                        = 16
     "editor.formatOnType"                    = false
     "editor.insertSpaces"                    = true
@@ -103,9 +102,8 @@ module "code-server" {
     "editor.renderControlCharacters"         = true
     "editor.renderLineHighlight"             = "all"
     "editor.renderWhitespace"                = "all"
-    "editor.wordWrap"                        = "off"
+    "editor.wordWrap"                        = "on"
     "extensions.autoUpdate"                  = true
-    "terminal.integrated.fontFamily"         = "Menlo, Monaco, 'Courier New', monospace"
     "terminal.integrated.fontSize"           = 16
     "workbench.colorTheme"                   = "Dracula Theme"
     "workbench.iconTheme"                    = "vscode-icons"
