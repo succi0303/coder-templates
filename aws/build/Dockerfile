@@ -4,6 +4,8 @@ RUN apt-get update \
 	&& apt-get install -y \
 	curl \
 	git \
+	nodejs \
+	npm \
 	sudo \
 	unzip \
 	vim \
@@ -19,6 +21,9 @@ RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2
 RUN wget "https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.zip" \
     && unzip aws-sam-cli-linux-x86_64.zip -d sam-installation \
 	&& ./sam-installation/install
+
+# Install AWS CDK
+RUN npm install -g aws-cdk
 
 ARG USER=coder
 RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
