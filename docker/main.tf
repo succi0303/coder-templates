@@ -50,7 +50,7 @@ module "vscode-web" {
     "editor.cursorBlinking"                  = "smooth"
     "editor.cursorSmoothCaretAnimation"      = "on",
     "editor.fontFamily"                      = "Menlo, Monaco, 'Courier New', monospace"
-    "editor.fontSize"                        = 16
+    "editor.fontSize"                        = "16"
     "editor.formatOnType"                    = false
     "editor.insertSpaces"                    = true
     "editor.lineNumbers"                     = "on"
