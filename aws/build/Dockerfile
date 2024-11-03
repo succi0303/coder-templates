@@ -41,8 +41,6 @@ RUN apt-get update \
 	pipx \
 	&& rm -rf /var/lib/apt/lists/*
 RUN ln -s $(which python3) /usr/bin/python
-RUN pipx ensurepath
-RUN pipx install pip git-remote-codecommit
 
 ENV TZ Asia/Tokyo
 ARG USER=coder
@@ -50,4 +48,8 @@ RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
 	&& echo "${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/${USER} \
 	&& chmod 0440 /etc/sudoers.d/${USER}
 USER ${USER}
+
+RUN pipx ensurepath
+RUN pipx install pip git-remote-codecommit
+
 WORKDIR /home/${USER}
