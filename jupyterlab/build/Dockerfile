@@ -1,5 +1,7 @@
 FROM jupyter/minimal-notebook
 
+USER rooot
+
 ENV TZ Asia/Tokyo
 ARG USER=coder
 RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
