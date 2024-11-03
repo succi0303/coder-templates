@@ -42,8 +42,6 @@ resource "coder_agent" "main" {
   startup_script = <<-EOT
     set -e
 
-    jupyter lab --ServerApp.token='' --ip='*' --ServerApp.base_url=/@${data.coder_workspace_owner.me.name}/${data.coder_workspace.me.name}/apps/j &
-
     # Prepare user home with default files on first start.
     if [ ! -f ~/.init_done ]; then
       cp -rT /etc/skel ~
@@ -142,6 +140,16 @@ resource "coder_app" "jupyter" {
     interval  = 10
     threshold = 20
   }
+}
+
+resource "coder_script" "jupyter" {
+  agent_id = coer_agent.main.id
+  display_name = "jupyter"
+  run_on_start = true
+  script = <<EOT
+      #!/bin/bash
+      jupyter lab --ServerApp.token='' --ip='*' --ServerApp.base_url=/@${data.coder_workspace_owner.me.name}/${data.coder_workspace.me.name}/apps/j &
+  EOT
 }
 
 resource "docker_volume" "home_volume" {
