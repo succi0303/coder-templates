@@ -33,13 +33,12 @@ RUN wget "https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cl
 RUN npm install -g aws-cdk
 
 # Install Python
-RUN add-apt-repository ppa:deadsnakes/ppa \
-	&& apt-get update \
+RUN apt-get update \
 	&& apt-get install -y \
-	python3.12-dev \
+	python3 \
 	pipx \
-	&& rm -f /var/lib/apt/lists/*
-RUN ln -s $(which python3.12) /usr/bin/python
+	&& rm -rf /var/lib/apt/lists/*
+RUN ln -s $(which python3) /usr/bin/python
 RUN pipx ensurepath
 
 ENV TZ Asia/Tokyo
