@@ -1,8 +1,8 @@
-FROM jupyter/minimal-notebook
+FROM codercom/enterprise-jupyter:ubuntu
 
-USER root
 
 ENV TZ Asia/Tokyo
+
 ARG USER=coder
 RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
 	&& echo "${USER} ALL=(ALL) NOPASSWD:ALL" >/etc/sudoers.d/${USER} \
