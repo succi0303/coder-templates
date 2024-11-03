@@ -143,10 +143,10 @@ resource "coder_app" "jupyter" {
 }
 
 resource "coder_script" "jupyter" {
-  agent_id = coer_agent.main.id
+  agent_id     = coder_agent.main.id
   display_name = "jupyter"
   run_on_start = true
-  script = <<EOT
+  script       = <<EOT
       #!/bin/bash
       jupyter lab --ServerApp.token='' --ip='*' --ServerApp.base_url=/@${data.coder_workspace_owner.me.name}/${data.coder_workspace.me.name}/apps/j &
   EOT
