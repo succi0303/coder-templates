@@ -84,14 +84,6 @@ module "code-server" {
   }
 }
 
-module "jupyterlab" {
-  source    = "registry.coder.com/modules/jupyterlab/coder"
-  version   = "1.0.23"
-  agent_id  = coder_agent.main.id
-  share     = "owner"
-  subdomain = false
-}
-
 module "dotfiles" {
   source   = "registry.coder.com/modules/dotfiles/coder"
   version  = "1.0.18"
@@ -111,6 +103,8 @@ resource "coder_agent" "main" {
   os             = "linux"
   startup_script = <<-EOT
     set -e
+
+    jupyter lab --ServerApp.token='' --ip='*' --ServerApp.base_url=/@${owner_name}/${workspace_name}/apps/j &
 
     # Prepare user home with default files on first start.
     if [ ! -f ~/.init_done ]; then
@@ -194,6 +188,21 @@ resource "coder_agent" "main" {
     EOT
     interval     = 10
     timeout      = 1
+  }
+}
+
+resource "coder_app" "jupyter" {
+  agent_id     = coder_agent.main.id
+  slug         = "j"
+  display_name = "JupyterLab"
+  url          = "http://localhost:8888/@${data.coder_workspace.me.owner}/${lower(data.coder_workspace.me.name)}/apps/j"
+  share        = "owner"
+  subdomain    = false
+
+  healthcheck {
+    url       = "http://localhost:8888/@${data.coder_workspace.me.owner}/${lower(data.coder_workspace.me.name)}/apps/j/api"
+    interval  = 10
+    threshold = 20
   }
 }
 
