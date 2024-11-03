@@ -4,9 +4,11 @@ RUN apt-get update \
 	&& apt-get install -y \
 	curl \
 	git \
+	gnjpg2 \
 	nodejs \
 	npm \
 	tzdata \
+	software-properties-common \
 	sudo \
 	unzip \
 	vim \
@@ -31,6 +33,18 @@ RUN wget "https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cl
 
 # Install AWS CDK
 RUN npm install -g aws-cdk
+
+# Install Python
+RUN set -x \
+    && add-apt-repository ppa:deadsnakes/ppa \
+	&& apt-get update \
+	&& apt-get install -y --no-install-recommends \
+	python3.12-dev \
+	pipx \
+	&& apt-get -y clean \
+	&& rm -f /var/lib/apt/lists/*
+RUN ln -s $(which python3.12) /usr/bin/python
+RUN pipx ensurepath
 
 ENV TZ Asia/Tokyo
 ARG USER=coder
