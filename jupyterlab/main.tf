@@ -195,12 +195,12 @@ resource "coder_app" "jupyter" {
   agent_id     = coder_agent.main.id
   slug         = "j"
   display_name = "JupyterLab"
-  url          = "http://localhost:8888/@${data.coder_workspace.me.owner}/${lower(data.coder_workspace.me.name)}/apps/j"
+  url          = "http://localhost:8888/@${data.coder_workspace_owner.me.name}/${lower(data.coder_workspace.me.name)}/apps/j"
   share        = "owner"
   subdomain    = false
 
   healthcheck {
-    url       = "http://localhost:8888/@${data.coder_workspace.me.owner}/${lower(data.coder_workspace.me.name)}/apps/j/api"
+    url       = "http://localhost:8888/@${data.coder_workspace_owner.me.name}/${lower(data.coder_workspace.me.name)}/apps/j/api"
     interval  = 10
     threshold = 20
   }
