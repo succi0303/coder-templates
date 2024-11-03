@@ -148,7 +148,7 @@ resource "coder_script" "jupyter" {
   run_on_start = true
   script       = <<EOT
       #!/bin/bash
-      jupyter lab --ServerApp.token='' --ip='*' --ServerApp.base_url=/@${data.coder_workspace_owner.me.name}/${data.coder_workspace.me.name}/apps/j --no-browser
+      jupyter lab --ServerApp.token='' --ip='*' --ServerApp.base_url=/@${data.coder_workspace_owner.me.name}/${data.coder_workspace.me.name}/apps/j --no-browser &
   EOT
 }
 
