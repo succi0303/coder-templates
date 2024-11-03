@@ -1,5 +1,7 @@
 FROM ubuntu
 
+USER root
+
 RUN apt-get update \
 	&& apt-get install -y \
 	curl \
@@ -40,9 +42,7 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/*
 RUN ln -s $(which python3) /usr/bin/python
 RUN pipx ensurepath
-RUN pipx install \
-    pip \
-    git-remote-codecommit
+RUN pipx install pip git-remote-codecommit
 
 ENV TZ Asia/Tokyo
 ARG USER=coder
