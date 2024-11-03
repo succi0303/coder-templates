@@ -1,6 +1,6 @@
 FROM jupyter/minimal-notebook
 
-USER rooot
+USER root
 
 ENV TZ Asia/Tokyo
 ARG USER=coder
