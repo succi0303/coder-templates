@@ -1,14 +1,4 @@
-FROM jupyter/base-notebook
-
-RUN apt-get update \
-	&& apt-get install -y \
-	curl \
-	git \
-	sudo \
-	tzdata \
-	vim \
-	wget \
-	&& rm -rf /var/lib/apt/lists/*
+FROM jupyter/minimal-notebook
 
 ENV TZ Asia/Tokyo
 ARG USER=coder
