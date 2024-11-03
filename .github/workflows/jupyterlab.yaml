@@ -1,0 +1,37 @@
+name: Update docker template
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "jupyterlab/main.tf"
+      - "jupyterlab/build/Dockerfile"
+      - "jupyterlab/README.md"
+      - ".github/workflows/jupyterlab.yaml"
+    workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Get latest short commit SHA
+        id: commit_sha
+        run: echo "hash=$(git rev-parse --short HEAD)" >>$GITHUB_OUTPUT
+
+      - name: Get commit title
+        id: commit_title
+        run: echo "title=$(git log -1 --pretty=%s)" >> $GITHUB_OUTPUT
+        
+      - name: Update Coder template
+        uses: matifali/update-coder-template@v3
+        with:
+          id: jupyterlab
+          dir: jupyterlab
+          url: ${{ vars.CODER_URL }}
+          name: ${{ steps.commit_sha.outputs.hash }}
+          message: ${{ steps.commit_title.outputs.title }}
+          coder_session_token: ${{ secrets.CODER_SESSION_TOKEN }}
