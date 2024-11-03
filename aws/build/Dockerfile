@@ -4,11 +4,9 @@ RUN apt-get update \
 	&& apt-get install -y \
 	curl \
 	git \
-	gnjpg2 \
 	nodejs \
 	npm \
 	tzdata \
-	software-properties-common \
 	sudo \
 	unzip \
 	vim \
