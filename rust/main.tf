@@ -59,7 +59,12 @@ module "code-server" {
     "IBM.output-colorizer",
     "oderwat.indent-rainbow",
     "redhat.vscode-yaml",
-    "dracula-theme.theme-dracula"
+    "dracula-theme.theme-dracula",
+    "rust-lang.rust",
+    "rust-lang.rust-analyzer",
+    "vadimcn.vscode-lldb",
+    "Swellaby.vscode-rust-test-adapter",
+    "JScearcy.rust-doc-viewer"
   ]
   settings = {
     "editor.autoClosingBrackets"             = "always"
