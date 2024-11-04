@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM codercom/enterprise-base:ubuntu
 
 USER root
 
