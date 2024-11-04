@@ -39,15 +39,10 @@ data "coder_workspace_owner" "me" {}
 resource "coder_agent" "main" {
   arch           = data.coder_provisioner.me.arch
   os             = "linux"
-  startup_script = <<-EOT
-    set -e
-
-    # Prepare user home with default files on first start.
-    if [ ! -f ~/.init_done ]; then
-      cp -rT /etc/skel ~
-      touch ~/.init_done
-    fi
-  EOT
+  startup_script = <<-EOF
+    pip3 install jupyterlab
+    $HOME/.local/bin/jupyter lab --ServerApp.token='' --ip='*'
+  EOF
 
   # These environment variables allow you to make Git commits right away after creating a
   # workspace. Note that they take precedence over configuration defined in ~/.gitconfig!
@@ -129,27 +124,18 @@ resource "coder_agent" "main" {
 
 resource "coder_app" "jupyter" {
   agent_id     = coder_agent.main.id
-  slug         = "j"
+  slug         = "jupyter"
   display_name = "JupyterLab"
-  url          = "http://localhost:8888/@${data.coder_workspace_owner.me.name}/${lower(data.coder_workspace.me.name)}/apps/j"
+  url          = "http://localhost:8888"
+  icon = "/icon/jupyter.svg"
   share        = "owner"
   subdomain    = false
 
   healthcheck {
-    url       = "http://localhost:8888/@${data.coder_workspace_owner.me.name}/${lower(data.coder_workspace.me.name)}/apps/j/api"
-    interval  = 10
+    url       = "http://localhost:8888/healthz"
+    interval  = 5
     threshold = 20
   }
-}
-
-resource "coder_script" "jupyter" {
-  agent_id     = coder_agent.main.id
-  display_name = "jupyter"
-  run_on_start = true
-  script       = <<EOT
-      #!/bin/bash
-      jupyter lab --ServerApp.token='' --ip='*' --ServerApp.base_url=/@${data.coder_workspace_owner.me.name}/${data.coder_workspace.me.name}/apps/j --no-browser &
-  EOT
 }
 
 resource "docker_volume" "home_volume" {

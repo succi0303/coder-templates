@@ -1,3 +1,1 @@
-FROM codercom/enterprise-jupyter:ubuntu
-
-ENV TZ Asia/Tokyo
+FROM codercom/enterprise-base:ubuntu
