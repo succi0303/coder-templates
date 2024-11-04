@@ -1,5 +1,7 @@
 FROM codercom/enterprise-base:ubuntu
 
+USER root
+
 # Install Python
 RUN apt-get update \
 	&& apt-get install -y \
@@ -8,3 +10,5 @@ RUN apt-get update \
 	pipx \
 	&& rm -rf /var/lib/apt/lists/*
 RUN ln -s $(which python3) /usr/bin/python
+
+USER coder
