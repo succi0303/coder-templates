@@ -48,9 +48,13 @@ resource "coder_agent" "main" {
   arch           = data.coder_provisioner.me.arch
   os             = "linux"
   startup_script = <<-EOF
-      pipx ensurepath
-      pipx install jupyterlab
-      $HOME/.local/bin/jupyter-lab --ServerApp.token='' --ip='*' --no-browser --port=8888
+    set -e
+
+    # Prepare user hoe with default files on first start.
+    if [ ! -f ~/.init_done ]; then
+      cp -rT /etc/skel ~
+      touch ~/.init_done
+    fi
   EOF
 
   # These environment variables allow you to make Git commits right away after creating a
@@ -128,22 +132,6 @@ resource "coder_agent" "main" {
     EOT
     interval     = 10
     timeout      = 1
-  }
-}
-
-resource "coder_app" "jupyter" {
-  agent_id     = coder_agent.main.id
-  slug         = "j"
-  display_name = "JupyterLab"
-  url          = "http://localhost:8888"
-  icon         = "/icon/jupyter.svg"
-  share        = "owner"
-  subdomain    = false
-
-  healthcheck {
-    url       = "http://localhost:8888/healthz"
-    interval  = 5
-    threshold = 20
   }
 }
 
