@@ -34,6 +34,14 @@ module "personalize" {
   agent_id = coder_agent.main.id
 }
 
+module "jupyterlab" {
+  source    = "registry.coder.com/modules/jupyterlab/coder"
+  version   = "1.0.23"
+  agent_id  = coder_agent.main.id
+  port      = 8888
+  subdomain = false
+}
+
 data "coder_workspace_owner" "me" {}
 
 resource "coder_agent" "main" {
@@ -42,7 +50,7 @@ resource "coder_agent" "main" {
   startup_script = <<-EOF
       pipx ensurepath
       pipx install jupyterlab
-      $HOME/.local/bin/jupyter-lab --ServerApp.token='' --ip='*'
+      $HOME/.local/bin/jupyter-lab --ServerApp.token='' --ip='*' --no-browser --port=8888
   EOF
 
   # These environment variables allow you to make Git commits right away after creating a
@@ -125,10 +133,10 @@ resource "coder_agent" "main" {
 
 resource "coder_app" "jupyter" {
   agent_id     = coder_agent.main.id
-  slug         = "jupyter"
+  slug         = "j"
   display_name = "JupyterLab"
   url          = "http://localhost:8888"
-  icon = "/icon/jupyter.svg"
+  icon         = "/icon/jupyter.svg"
   share        = "owner"
   subdomain    = false
 
