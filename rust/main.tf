@@ -61,7 +61,6 @@ module "code-server" {
     "redhat.vscode-yaml",
     "dracula-theme.theme-dracula",
     "rust-lang.rust",
-    "rust-lang.rust-analyzer",
     "vadimcn.vscode-lldb",
     "Swellaby.vscode-rust-test-adapter",
     "JScearcy.rust-doc-viewer"
