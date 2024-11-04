@@ -117,6 +117,8 @@ resource "coder_agent" "main" {
   startup_script = <<-EOT
     set -e
 
+    rustup default stable
+
     # Prepare user home with default files on first start.
     if [ ! -f ~/.init_done ]; then
       cp -rT /etc/skel ~

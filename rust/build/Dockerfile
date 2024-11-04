@@ -21,7 +21,4 @@ RUN useradd --groups sudo --no-create-home --shell /bin/bash ${USER} \
 	&& chmod 0440 /etc/sudoers.d/${USER}
 USER ${USER}
 
-# Install rust default toolchain
-RUN rustup default stable
-
 WORKDIR /home/${USER}
