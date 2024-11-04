@@ -40,8 +40,9 @@ resource "coder_agent" "main" {
   arch           = data.coder_provisioner.me.arch
   os             = "linux"
   startup_script = <<-EOF
-    pip3 install jupyterlab
-    $HOME/.local/bin/jupyter lab --ServerApp.token='' --ip='*'
+      pipx ensurepath
+      pipx install jupyterlab
+      $HOME/.local/bin/jupyter lab --ServerApp.token='' --ip='*'
   EOF
 
   # These environment variables allow you to make Git commits right away after creating a
