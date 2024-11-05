@@ -13,6 +13,28 @@ locals {
   username = data.coder_workspace_owner.me.name
 }
 
+data "coder_parameter" "rust_version" {
+  name         = "rust_version"
+  display_name = "Rust version"
+  description  = "Choose your Rust version."
+  type         = "string"
+  mutable      = false
+  default      = "stable"
+  order        = 1
+  option {
+    name  = "stable"
+    value = "stable"
+  }
+  option {
+    name  = "beta"
+    value = "beta"
+  }
+  option {
+    name  = "nightly"
+    value = "nightly"
+  }
+}
+
 data "coder_provisioner" "me" {
 }
 
@@ -116,7 +138,7 @@ resource "coder_agent" "main" {
   startup_script = <<-EOT
     set -e
 
-    rustup default stable
+    rustup default ${data.coder_parameter.rust_version.value}
 
     # Prepare user home with default files on first start.
     if [ ! -f ~/.init_done ]; then
