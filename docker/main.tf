@@ -197,6 +197,15 @@ resource "coder_agent" "main" {
   }
 }
 
+resource "coder_app" "port8080" {
+  agent_id     = coder_agent.main.id
+  slug         = "port8080"
+  display_name = "Port:8080"
+  url          = "http://localhost:8080"
+  share        = "owner"
+  subdomain    = false
+}
+
 resource "docker_volume" "home_volume" {
   name = "coder-${data.coder_workspace.me.id}-home"
   # Protect the volume from being deleted due to changes in attributes.
