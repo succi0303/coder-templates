@@ -191,13 +191,13 @@ resource "coder_agent" "main" {
   }
 }
 
-data "coder_app" "port8080" {
-  agent_id = coder_agent.main.id
-  slug = "port8080"
+resource "coder_app" "port8080" {
+  agent_id     = coder_agent.main.id
+  slug         = "port8080"
   display_name = "Port:8080"
-  url = "http://localhost:8080"
-  share = owner
-  subdomain = false
+  url          = "http://localhost:8080"
+  share        = "owner"
+  subdomain    = false
 }
 
 resource "docker_volume" "home_volume" {
