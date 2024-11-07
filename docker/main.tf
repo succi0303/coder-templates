@@ -34,7 +34,7 @@ module "vscode-web" {
   subdomain      = false
   extensions = [
     "vscode-icons-team.vscode-icons",
-    "keifererikson.nightfox"
+    "keifererikson.nightfox",
     "shardulm94.trailing-spaces",
     "mechatroner.rainbow-csv",
     "IBM.output-colorizer",
@@ -46,7 +46,7 @@ module "vscode-web" {
     "editor.autoIndent"                      = "full"
     "editor.bracketPairColorization.enabled" = true
     "editor.cursorBlinking"                  = "smooth"
-    "editor.cursorSmoothCaretAnimation"      = "on",
+    "editor.cursorSmoothCaretAnimation"      = "on"
     "editor.fontSize"                        = 16
     "editor.formatOnType"                    = false
     "editor.insertSpaces"                    = true
