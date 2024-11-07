@@ -1,4 +1,4 @@
-name: Update docker template
+name: Update aws template
 
 on:
   push:
