@@ -61,6 +61,7 @@ module "vscode-web" {
     "terminal.integrated.fontSize"           = 16
     "workbench.colorTheme" = "Nightfox"
     "workbench.iconTheme"  = "vscode-icons"
+  }
 }
 
 module "code-server" {
