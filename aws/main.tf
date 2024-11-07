@@ -34,12 +34,33 @@ module "vscode-web" {
   subdomain      = false
   extensions = [
     "vscode-icons-team.vscode-icons",
-    "keifererikson.nightfox"
+    "keifererikson.nightfox",
+    "shardulm94.trailing-spaces",
+    "mechatroner.rainbow-csv",
+    "IBM.output-colorizer",
+    "oderwat.indent-rainbow",
+    "redhat.vscode-yaml",
   ]
   settings = {
+    "editor.autoClosingBrackets"             = "always"
+    "editor.autoIndent"                      = "full"
+    "editor.bracketPairColorization.enabled" = true
+    "editor.cursorBlinking"                  = "smooth"
+    "editor.cursorSmoothCaretAnimation"      = "on"
+    "editor.fontSize"                        = 16
+    "editor.formatOnType"                    = false
+    "editor.insertSpaces"                    = true
+    "editor.lineNumbers"                     = "on"
+    "editor.minimap.enabled"                 = false
+    "editor.smoothScrolling"                 = true
+    "editor.renderControlCharacters"         = true
+    "editor.renderLineHighlight"             = "all"
+    "editor.renderWhitespace"                = "all"
+    "editor.wordWrap"                        = "on"
+    "extensions.autoUpdate"                  = true
+    "terminal.integrated.fontSize"           = 16
     "workbench.colorTheme" = "Nightfox"
     "workbench.iconTheme"  = "vscode-icons"
-  }
 }
 
 module "code-server" {
