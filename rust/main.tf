@@ -62,6 +62,10 @@ module "vscode-web" {
     "IBM.output-colorizer",
     "oderwat.indent-rainbow",
     "redhat.vscode-yaml",
+    "rust-lang.rust",
+    "vadimcn.vscode-lldb",
+    "Swellaby.vscode-rust-test-adapter",
+    "JScearcy.rust-doc-viewer"
   ]
   settings = {
     "editor.autoClosingBrackets"             = "always"

@@ -68,6 +68,7 @@ module "vscode-web" {
   share          = "owner"
   subdomain      = false
   extensions = [
+    "hashicorp.terraform",
     "vscode-icons-team.vscode-icons",
     "keifererikson.nightfox",
     "shardulm94.trailing-spaces",

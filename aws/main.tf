@@ -33,6 +33,8 @@ module "vscode-web" {
   share          = "owner"
   subdomain      = false
   extensions = [
+    "AmazonWebServices.aws-toolkit-vscode",
+    "amazonwebservices.amazon-q-vscode",
     "vscode-icons-team.vscode-icons",
     "keifererikson.nightfox",
     "shardulm94.trailing-spaces",
