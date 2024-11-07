@@ -37,6 +37,7 @@ module "vscode-web" {
     "keifererikson.nightfox"
   ]
   settings = {
+    "editor.fontSize" = 16
     "workbench.colorTheme" = "Nightfox"
     "workbench.iconTheme"  = "vscode-icons"
   }
