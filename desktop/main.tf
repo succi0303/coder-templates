@@ -68,15 +68,8 @@ module "kasmvnc" {
   source              = "registry.coder.com/modules/kasmvnc/coder"
   version             = "1.0.23"
   agent_id            = coder_agent.main.id
+  port                = "6800"
   desktop_environment = "xfce"
-}
-
-module "jupyterlab" {
-  source    = "registry.coder.com/modules/jupyterlab/coder"
-  version   = "1.0.23"
-  agent_id  = coder_agent.main.id
-  share     = "owner"
-  subdomain = false
 }
 
 module "dotfiles" {
