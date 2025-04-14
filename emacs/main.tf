@@ -22,6 +22,12 @@ provider "docker" {
 data "coder_workspace" "me" {
 }
 
+module "dotfiles" {
+  source   = "registry.coder.com/modules/dotfiles/coder"
+  version  = "1.0.18"
+  agent_id = coder_agent.main.id
+}
+
 module "personalize" {
   source   = "registry.coder.com/modules/personalize/coder"
   version  = "1.0.2"
